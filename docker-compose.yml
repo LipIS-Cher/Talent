@@ -1,11 +1,17 @@
 version: '3.7'
 
 services:
+  backend:
+    build: ./backend
+    command: python index.py
+    ports:
+      - '8080:8080'
+    volumes:
+      - './backend:/backend'
   frontend:
     build: ./talent
     volumes:
-      - './talent:/react_app'
-      - '/react_app/node_modules'
+      - ./talent:/react_app
     command: npm start
     # open stdin for server to compile and start (react bug)
     stdin_open: true
@@ -14,9 +20,7 @@ services:
     environment:
       - NODE_ENV=development
     depends_on:
-    - backend
+      - backend
+volumes:
+  talent:
   backend:
-    build: ./backend
-    command: python index.py
-    ports:
-      - '8080:8080'
