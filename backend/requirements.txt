@@ -1,3 +1,6 @@
 aiohttp
 cchardet
 aiodns
+aiohttp-session
+cryptography
+requests 
